@@ -178,6 +178,7 @@
     if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
     {
         // not a word - bail out
+        [[[[UIAlertView alloc] initWithTitle:@"Not a word" message:[NSString stringWithFormat:@"%@ is not in my dictionary",word] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
        return;
     }
     
