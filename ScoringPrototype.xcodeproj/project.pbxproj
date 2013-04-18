@@ -139,6 +139,7 @@
 		4C04A4CE171FAA3B00F87B12 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4CD171FAA3B00F87B12 /* IntroLayer.m */; };
 		4C04A4D7171FAB9800F87B12 /* GameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */; };
 		4C04A4DA171FAC0E00F87B12 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D9171FAC0E00F87B12 /* Tile.m */; };
+		4C04A4E0171FAF5B00F87B12 /* DictionaryLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4DF171FAF5A00F87B12 /* DictionaryLogic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -419,6 +420,8 @@
 		4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameBoardLayer.m; path = GameBoard/GameBoardLayer.m; sourceTree = "<group>"; };
 		4C04A4D8171FAC0D00F87B12 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = GameBoard/Tile.h; sourceTree = "<group>"; };
 		4C04A4D9171FAC0E00F87B12 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = GameBoard/Tile.m; sourceTree = "<group>"; };
+		4C04A4DE171FAF5A00F87B12 /* DictionaryLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryLogic.h; path = GameBoard/DictionaryLogic.h; sourceTree = "<group>"; };
+		4C04A4DF171FAF5A00F87B12 /* DictionaryLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryLogic.m; path = GameBoard/DictionaryLogic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -872,6 +875,8 @@
 				4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */,
 				4C04A4D8171FAC0D00F87B12 /* Tile.h */,
 				4C04A4D9171FAC0E00F87B12 /* Tile.m */,
+				4C04A4DE171FAF5A00F87B12 /* DictionaryLogic.h */,
+				4C04A4DF171FAF5A00F87B12 /* DictionaryLogic.m */,
 			);
 			name = GameBoard;
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 				4C04A4CE171FAA3B00F87B12 /* IntroLayer.m in Sources */,
 				4C04A4D7171FAB9800F87B12 /* GameBoardLayer.m in Sources */,
 				4C04A4DA171FAC0E00F87B12 /* Tile.m in Sources */,
+				4C04A4E0171FAF5B00F87B12 /* DictionaryLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
