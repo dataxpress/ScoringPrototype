@@ -18,4 +18,7 @@
 
 -(BOOL)isWord:(NSString*)word;
 
+-(BOOL)isWordPlayed:(NSString*)word;
+-(void)playWord:(NSString*)word;
+
 @end

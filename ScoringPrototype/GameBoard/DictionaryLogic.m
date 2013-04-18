@@ -8,7 +8,15 @@
 
 #import "DictionaryLogic.h"
 
+@interface DictionaryLogic ()
+
+@property (nonatomic, retain) NSMutableSet* playedWords;
+
+@end
+
 @implementation DictionaryLogic
+
+#pragma mark - set up
 
 +(id)sharedDictionaryLogic
 {
@@ -19,6 +27,17 @@
     });
     return sharedDictionaryLogic;
 }
+
+-(id)init
+{
+    if(self = [super init])
+    {
+        _playedWords = [[NSMutableSet alloc] init];
+    }
+    return self;
+}
+
+#pragma mark - score handling
 
 -(NSDictionary*)pointsDictionary
 {
@@ -35,6 +54,8 @@
 {
     return [[[self pointsDictionary] objectForKey:letter] intValue];
 }
+
+#pragma mark - content generation
 
 -(NSString*)randomLetter
 {
@@ -57,9 +78,21 @@
     return letterbag[index];
 }
 
+#pragma mark - word playing history
+
 -(BOOL)isWord:(NSString *)word
 {
     return YES;
+}
+
+-(BOOL)isWordPlayed:(NSString *)word
+{
+    return [self.playedWords containsObject:word];
+}
+
+-(void)playWord:(NSString *)word
+{
+    [self.playedWords addObject:word];
 }
 
 @end

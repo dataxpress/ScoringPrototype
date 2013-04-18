@@ -87,7 +87,7 @@
     // move into position
     switch (self.mode) {
         case TileModeBoard:
-            destination = ccp(32 + self.col * 64, 40 + 32 + self.row * 64);;
+            destination = ccp(32 + self.col * 64, 75 + 32 + self.row * 64);;
 
             break;
         case TileModeDragging:

@@ -15,6 +15,8 @@
 @interface GameBoardLayer ()
 
 @property (nonatomic, retain) CCLabelTTF* turnLabel;
+@property (nonatomic, retain) CCLabelTTF* p1scoreLabel;
+@property (nonatomic, retain) CCLabelTTF* p2scoreLabel;
 
 @end
 
@@ -72,13 +74,24 @@
 		} ];
         
 		CCMenu *menu = [CCMenu menuWithItems:itemPlay, nil];
-		menu.position = ccp(200,500);
+		menu.position = ccp(280,40);
 		// Add the menu to the layer
 		[self addChild:menu];
         
+        _turnLabel = [[CCLabelTTF labelWithString:@"Player 1's turn" fontName:@"Marker Felt" fontSize:24] retain];
+        _turnLabel.position = ccp(160, 40);
+        [self addChild:_turnLabel];
+        
+        _p1scoreLabel = [[CCLabelTTF labelWithString:@"P1: 0" fontName:@"Marker Felt" fontSize:24] retain];
+        _p1scoreLabel.position = ccp(60, 510);
+        [self addChild:_p1scoreLabel];
+        
+        _p2scoreLabel = [[CCLabelTTF labelWithString:@"P2: 0" fontName:@"Marker Felt" fontSize:24] retain];
+        _p2scoreLabel.position = ccp(260, 510);
+        [self addChild:_p2scoreLabel];
+        
     }
     
-    NSLog(@"Tiles are %@",_tiles);
     return self;
 }
 
@@ -117,6 +130,7 @@
         default:
             break;
     }
+    [self updateScores];
 }
 
 #pragma mark - stage management
@@ -161,11 +175,20 @@
         [word appendString:tile.letter];
     }
     
-    // don't allow the move
     if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
     {
+        // not a word - bail out
        return;
     }
+    
+    if([[DictionaryLogic sharedDictionaryLogic] isWordPlayed:word] == YES)
+    {
+        // word has been played, bail out
+        return;
+    }
+    
+    // play the word
+    [[DictionaryLogic sharedDictionaryLogic] playWord:word];
     
     NSArray* newWord = [self.stage copy];
     
@@ -180,9 +203,13 @@
     
     // switch player turn
     self.playerTurn = (self.playerTurn == 1)?0:1;
+    self.turnLabel.string = [NSString stringWithFormat:@"Player %d's turn",self.playerTurn+1];
     
     // update locked states
     [self updateLockedTiles];
+    
+    // update scores
+    [self updateScores];
 }
 
 -(void)updateLockedTiles
@@ -213,6 +240,36 @@
         }
     }
 }
+
+-(void)updateScores
+{
+    int player1score = 0;
+    int player2score = 0;
+    for(Tile* tile in self.tiles)
+    {
+        if(tile.mode == TileModeBoard)
+        {
+            if(tile.owner == 0) player1score += tile.points;
+            if(tile.owner == 1) player2score += tile.points;
+        }
+        if(tile.mode == TileModeStaged)
+        {
+            if(self.playerTurn == 0)
+            {
+                player1score += tile.points;
+            }
+            else
+            {
+                player2score += tile.points;
+            }
+        }
+    }
+    self.p1scoreLabel.string = [NSString stringWithFormat:@"P1: %d",player1score];
+    self.p2scoreLabel.string = [NSString stringWithFormat:@"P2: %d",player2score];
+
+}
+
+#pragma mark - Tile finding model
 
 -(NSSet*)allNeighborsOfTile:(Tile*)tile
 {
