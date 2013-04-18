@@ -98,7 +98,7 @@
                 destScale = 320.0f / (64.0f * self.stageCount);
                 
             }
-            destination = ccp((self.scale * 32.0f) + self.order * (64*self.scale), 440);
+            destination = ccp((self.scale * 32.0f) + self.order * (64*self.scale), 450);
         default:
             break;
     }
