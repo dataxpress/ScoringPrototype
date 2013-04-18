@@ -117,9 +117,33 @@
     
 }
 
+-(void)setState:(TileState)state
+{
+    _state = state;
+    [self updateTileColor];
+}
+
 -(void)setOwner:(int)owner
 {
-    
+    _owner = owner;
+    [self updateTileColor];
+}
+
+-(void)updateTileColor
+{
+    ccColor3B color = ccWHITE;
+    switch(self.state)
+    {
+        case TileStateLocked:
+            color = (self.owner == 0)?ccRED:ccBLUE;
+            break;
+        case TileStateOwned:
+            color = (self.owner == 0)?(ccColor3B){255,125,125}:(ccColor3B){125,125,255};
+            break;
+        default:
+            break;
+    }
+    self.sprite.color = color;
 }
 
 -(CGRect)rect

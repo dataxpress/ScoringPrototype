@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+typedef enum
+{
+    TileDirectionNorth,
+    TileDirectionEast,
+    TileDirectionWest,
+    TileDirectionSouth
+} TileDirection;
+
 @interface GameBoardLayer : CCLayer {
     
 }
@@ -17,5 +25,7 @@
 
 @property (nonatomic, retain) NSMutableArray* stage;
 +(CCScene*)scene;
+
+@property (nonatomic) int playerTurn;
 
 @end

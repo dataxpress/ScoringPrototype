@@ -57,4 +57,9 @@
     return letterbag[index];
 }
 
+-(BOOL)isWord:(NSString *)word
+{
+    return YES;
+}
+
 @end

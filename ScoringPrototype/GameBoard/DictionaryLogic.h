@@ -16,4 +16,6 @@
 
 -(NSString*)randomLetter;
 
+-(BOOL)isWord:(NSString*)word;
+
 @end

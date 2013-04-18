@@ -12,6 +12,12 @@
 
 #import "DictionaryLogic.h"
 
+@interface GameBoardLayer ()
+
+@property (nonatomic, retain) CCLabelTTF* turnLabel;
+
+@end
+
 @implementation GameBoardLayer
 
 #pragma mark - scene factory
@@ -59,6 +65,17 @@
         [self addChild:colorLayer z:-1];
 
         
+        [CCMenuItemFont setFontSize:24];
+		
+		CCMenuItem *itemPlay = [CCMenuItemFont itemWithString:@"Play" block:^(id sender) {
+			[self playMove];
+		} ];
+        
+		CCMenu *menu = [CCMenu menuWithItems:itemPlay, nil];
+		menu.position = ccp(200,500);
+		// Add the menu to the layer
+		[self addChild:menu];
+        
     }
     
     NSLog(@"Tiles are %@",_tiles);
@@ -89,7 +106,10 @@
     switch(tile.mode)
     {
         case TileModeBoard:
-            [self addTileToStage:tile];
+            if(tile.state != TileStateLocked || tile.owner == self.playerTurn)
+            {
+                [self addTileToStage:tile];
+            }
             break;
         case TileModeStaged:
             [self removeTileFromStage:tile];
@@ -98,6 +118,8 @@
             break;
     }
 }
+
+#pragma mark - stage management
 
 -(void)addTileToStage:(Tile*)tile
 {
@@ -126,6 +148,110 @@
         [self updateStageOrder];
     }
     tile.mode = TileModeBoard;
+}
+
+#pragma mark - move playing
+
+-(void)playMove
+{
+    // build the NSString for our word
+    NSMutableString* word = [[[NSMutableString alloc] init] autorelease];
+    for(Tile* tile in self.stage)
+    {
+        [word appendString:tile.letter];
+    }
+    
+    // don't allow the move
+    if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
+    {
+       return;
+    }
+    
+    NSArray* newWord = [self.stage copy];
+    
+    // set the new tile ownership and state
+    for(Tile* tile in newWord)
+    {
+        tile.owner = self.playerTurn;
+        [self removeTileFromStage:tile];
+    }
+    
+    [newWord release];
+    
+    // switch player turn
+    self.playerTurn = (self.playerTurn == 1)?0:1;
+    
+    // update locked states
+    [self updateLockedTiles];
+}
+
+-(void)updateLockedTiles
+{
+    // loop through all tiles
+    for(Tile* tile in self.tiles)
+    {
+        NSSet* neighbors = [self allNeighborsOfTile:tile];
+        BOOL locked = YES;
+        for(Tile* neighbor in neighbors)
+        {
+            if(neighbor.owner != tile.owner)
+            {
+                locked = NO;
+            }
+        }
+        if(locked && tile.owner != -1)
+        {
+            tile.state = TileStateLocked;
+        }
+        else if(tile.owner != -1)
+        {
+            tile.state = TileStateOwned;
+        }
+        else
+        {
+            tile.state = TileStateNeutral;
+        }
+    }
+}
+
+-(NSSet*)allNeighborsOfTile:(Tile*)tile
+{
+    NSMutableSet* neighbors = [[NSMutableSet alloc] init];
+    for(int direction=0; direction<4; direction++)
+    {
+        Tile* neighbor = [self neighborOfTile:tile inDirection:direction];
+        if(neighbor != nil)
+            [neighbors addObject:neighbor];
+    }
+    return [neighbors autorelease];
+    
+}
+
+-(Tile*)neighborOfTile:(Tile*)tile inDirection:(TileDirection)direction
+{
+    switch(direction)
+    {
+        case TileDirectionNorth:
+            return [self tileAtRow:tile.row-1 andColumn:tile.col];
+        case TileDirectionEast:
+            return [self tileAtRow:tile.row andColumn:tile.col-1];
+        case TileDirectionSouth:
+            return [self tileAtRow:tile.row+1 andColumn:tile.col];
+        case TileDirectionWest:
+            return [self tileAtRow:tile.row andColumn:tile.col+1];
+    }
+}
+
+-(Tile*)tileAtRow:(int)row andColumn:(int)col
+{
+    for(Tile* tile in self.tiles)
+    {
+        if(tile.row == row && tile.col == col)
+        {
+            return tile;
+        }
+    }
+    return nil;
 }
 
 
