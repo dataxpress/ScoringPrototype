@@ -8,7 +8,15 @@
 
 #import "Tile.h"
 
+#import "DictionaryLogic.h"
 
 @implementation Tile
+
+
+
+-(int)points
+{
+    return [[DictionaryLogic sharedDictionaryLogic] pointsForLetter:self.letter];
+}
 
 @end

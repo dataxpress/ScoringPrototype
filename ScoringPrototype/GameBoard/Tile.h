@@ -9,8 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+typedef enum {
+    TileStateNeutral,
+    TileStateOwned,
+    TileStateLocked
+} TileState;
+
 @interface Tile : CCNode {
     
 }
+
+@property (nonatomic) int row;
+@property (nonatomic) int col;
+@property (nonatomic) TileState state;
+@property (nonatomic, retain) NSString* letter;
+
+-(int)points;
 
 @end
