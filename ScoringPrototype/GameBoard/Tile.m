@@ -135,10 +135,10 @@
     switch(self.state)
     {
         case TileStateLocked:
-            color = (self.owner == 0)?ccRED:ccBLUE;
+            color = (self.owner == 1)?ccRED:ccBLUE;
             break;
         case TileStateOwned:
-            color = (self.owner == 0)?(ccColor3B){255,125,125}:(ccColor3B){125,125,255};
+            color = (self.owner == 1)?(ccColor3B){255,125,125}:(ccColor3B){125,125,255};
             break;
         default:
             break;
