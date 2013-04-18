@@ -15,6 +15,12 @@ typedef enum {
     TileStateLocked
 } TileState;
 
+typedef enum {
+    TileModeBoard,
+    TileModeDragging,
+    TileModeStaged
+} TileMode;
+
 @interface Tile : CCNode {
     
 }
@@ -22,7 +28,9 @@ typedef enum {
 @property (nonatomic) int row;
 @property (nonatomic) int col;
 @property (nonatomic) TileState state;
+@property (nonatomic) TileMode mode;
 @property (nonatomic, retain) NSString* letter;
+@property (nonatomic) int owner;
 
 -(int)points;
 

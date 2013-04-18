@@ -140,6 +140,8 @@
 		4C04A4D7171FAB9800F87B12 /* GameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */; };
 		4C04A4DA171FAC0E00F87B12 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D9171FAC0E00F87B12 /* Tile.m */; };
 		4C04A4E0171FAF5B00F87B12 /* DictionaryLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4DF171FAF5A00F87B12 /* DictionaryLogic.m */; };
+		4C04A4E4171FB44F00F87B12 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C04A4E2171FB44F00F87B12 /* tile.png */; };
+		4C04A4E5171FB44F00F87B12 /* tile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C04A4E3171FB44F00F87B12 /* tile-hd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -422,6 +424,8 @@
 		4C04A4D9171FAC0E00F87B12 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = GameBoard/Tile.m; sourceTree = "<group>"; };
 		4C04A4DE171FAF5A00F87B12 /* DictionaryLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryLogic.h; path = GameBoard/DictionaryLogic.h; sourceTree = "<group>"; };
 		4C04A4DF171FAF5A00F87B12 /* DictionaryLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryLogic.m; path = GameBoard/DictionaryLogic.m; sourceTree = "<group>"; };
+		4C04A4E2171FB44F00F87B12 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
+		4C04A4E3171FB44F00F87B12 /* tile-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile-hd.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,6 +484,7 @@
 		4C04A33F171FAA3800F87B12 /* ScoringPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				4C04A4E1171FB41600F87B12 /* Assets */,
 				4C04A4D4171FAB7C00F87B12 /* GameBoard */,
 				4C04A4C6171FAA3B00F87B12 /* AppDelegate.h */,
 				4C04A4C7171FAA3B00F87B12 /* AppDelegate.m */,
@@ -881,6 +886,15 @@
 			name = GameBoard;
 			sourceTree = "<group>";
 		};
+		4C04A4E1171FB41600F87B12 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4C04A4E2171FB44F00F87B12 /* tile.png */,
+				4C04A4E3171FB44F00F87B12 /* tile-hd.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -944,6 +958,8 @@
 				4C04A354171FAA3800F87B12 /* Icon@2x.png in Resources */,
 				4C04A357171FAA3800F87B12 /* iTunesArtwork in Resources */,
 				4C04A4A6171FAA3B00F87B12 /* ChangeLog in Resources */,
+				4C04A4E4171FB44F00F87B12 /* tile.png in Resources */,
+				4C04A4E5171FB44F00F87B12 /* tile-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

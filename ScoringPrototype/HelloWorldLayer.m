@@ -56,7 +56,7 @@
 			
             CCScene* gameBoardScene = [GameBoardLayer scene];
             
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:gameBoardScene]];
+            [[CCDirector sharedDirector] replaceScene:gameBoardScene];
             
             
 		} ];

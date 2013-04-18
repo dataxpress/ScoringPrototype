@@ -14,4 +14,6 @@
 
 +(id)sharedDictionaryLogic;
 
+-(NSString*)randomLetter;
+
 @end

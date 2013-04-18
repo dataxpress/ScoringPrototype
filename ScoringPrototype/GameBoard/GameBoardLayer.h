@@ -13,6 +13,8 @@
     
 }
 
+@property (nonatomic, retain) NSMutableSet* tiles;
+
 +(CCScene*)scene;
 
 @end
