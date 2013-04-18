@@ -90,6 +90,8 @@
         _p2scoreLabel.position = ccp(260, 510);
         [self addChild:_p2scoreLabel];
         
+        [self updateScores];
+        
     }
     
     return self;
@@ -175,22 +177,29 @@
         [word appendString:tile.letter];
     }
     
-    if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
+    // if word is empty, they're passing... supress dictionary checks on passes
+    if(word.length != 0)
     {
-        // not a word - bail out
-        [[[[UIAlertView alloc] initWithTitle:@"Not a word" message:[NSString stringWithFormat:@"%@ is not in my dictionary",[word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
-       return;
+        
+        if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
+        {
+            // not a word - bail out
+            [[[[UIAlertView alloc] initWithTitle:@"Not a word" message:[NSString stringWithFormat:@"%@ is not in my dictionary",[word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+           return;
+        }
+        
+        if([[DictionaryLogic sharedDictionaryLogic] isWordPlayed:word] == YES)
+        {
+            // word has been played, bail out
+            [[[[UIAlertView alloc] initWithTitle:@"Played" message:[NSString stringWithFormat:@"%@, or a word starting with %@, has been played",[word lowercaseString], [word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+            return;
+        }
+        
+            
+        // play the word
+        [[DictionaryLogic sharedDictionaryLogic] playWord:word];
+        
     }
-    
-    if([[DictionaryLogic sharedDictionaryLogic] isWordPlayed:word] == YES)
-    {
-        // word has been played, bail out
-        [[[[UIAlertView alloc] initWithTitle:@"Played" message:[NSString stringWithFormat:@"%@, or a word starting with %@, has been played",[word lowercaseString], [word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
-        return;
-    }
-    
-    // play the word
-    [[DictionaryLogic sharedDictionaryLogic] playWord:word];
     
     NSArray* newWord = [self.stage copy];
     
@@ -205,7 +214,6 @@
     
     // switch player turn
     self.playerTurn = (self.playerTurn == 1)?0:1;
-    self.turnLabel.string = [NSString stringWithFormat:@"Player %d's turn",self.playerTurn+1];
     
     // update locked states
     [self updateLockedTiles];
@@ -269,6 +277,8 @@
     self.p1scoreLabel.string = [NSString stringWithFormat:@"P1: %d",player1score];
     self.p2scoreLabel.string = [NSString stringWithFormat:@"P2: %d",player2score];
 
+    self.turnLabel.string = [NSString stringWithFormat:@"Player %d's turn",self.playerTurn+1];
+    self.turnLabel.color = (self.playerTurn)?(ccColor3B){255,125,125}:(ccColor3B){125,125,255};
 }
 
 #pragma mark - Tile finding model
