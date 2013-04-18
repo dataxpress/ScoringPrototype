@@ -103,10 +103,12 @@
         
         _p1scoreLabel = [[CCLabelTTF labelWithString:@"P1: 0" fontName:@"Marker Felt" fontSize:24] retain];
         _p1scoreLabel.position = ccp(60, 510);
+        _p1scoreLabel.color = (ccColor3B){128,128,255};
         [self addChild:_p1scoreLabel];
         
         _p2scoreLabel = [[CCLabelTTF labelWithString:@"P2: 0" fontName:@"Marker Felt" fontSize:24] retain];
         _p2scoreLabel.position = ccp(260, 510);
+        _p2scoreLabel.color = (ccColor3B){255,128,128};
         [self addChild:_p2scoreLabel];
         
         [self updateScores];
