@@ -38,9 +38,23 @@
 
 -(NSString*)randomLetter
 {
-    NSArray* letters = [[self pointsDictionary] allKeys];
-    int index = arc4random()%letters.count;
-    return letters[index];
+    static NSMutableArray* letterbag;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        letterbag = [[NSMutableArray alloc] init];
+        NSDictionary* frequencyDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@(4),@"S",@(4),@"U",@(6),@"N",@(6),@"R",@(6),@"T",@(8),@"O",@(9),@"A",@(9),@"I",@(12),@"E",@(4),@"L",@(3),@"G",@(4),@"D",@(2),@"B",@(2),@"C",@(2),@"M",@(2),@"P",@(2),@"F",@(2),@"H",@(2),@"V",@(2),@"W",@(2),@"Y",@(1),@"K",@(1),@"J",@(1),@"X",@(1),@"Z",@(1),@"Q",nil];
+        for(NSString* letter in frequencyDictionary)
+        {
+            int occurrences = [[frequencyDictionary objectForKey:letter] intValue];
+            for(int i=0; i<occurrences; i++)
+            {
+                [letterbag addObject:letter];
+            }
+        }
+        
+    });
+    int index = arc4random()%letterbag.count;
+    return letterbag[index];
 }
 
 @end
