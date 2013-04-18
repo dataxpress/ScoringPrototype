@@ -31,6 +31,9 @@ typedef enum {
 @property (nonatomic) TileMode mode;
 @property (nonatomic, retain) NSString* letter;
 @property (nonatomic) int owner;
+@property (nonatomic) int order;
+
+@property (nonatomic, readonly) CGRect rect;
 
 -(int)points;
 

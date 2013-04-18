@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSMutableSet* tiles;
 
+@property (nonatomic, retain) NSMutableArray* stage;
 +(CCScene*)scene;
 
 @end

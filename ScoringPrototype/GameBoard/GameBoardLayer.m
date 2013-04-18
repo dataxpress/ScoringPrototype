@@ -38,6 +38,7 @@
     if(self = [super init])
     {
         _tiles = [[NSMutableSet alloc] init];
+        _stage = [[NSMutableArray alloc] init];
         
         // set up tiles
         for(int row=0; row<5; row++)
@@ -53,6 +54,8 @@
             
         }
         
+        self.touchEnabled = YES;
+        
     }
     
     NSLog(@"Tiles are %@",_tiles);
@@ -63,7 +66,63 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"Tocuhes are %@",touches);
+    for(UITouch* touch in touches)
+    {
+        CGPoint location = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
+        NSLog(@"Location of touch is %@",NSStringFromCGPoint(location));
+        for(Tile* tile in self.tiles)
+        {
+            if(CGRectContainsPoint(tile.rect, location))
+            {
+                [self tileTapped:tile];
+                return;
+            }
+        }
+    }
+}
+
+-(void)tileTapped:(Tile*)tile
+{
+    
+    switch(tile.mode)
+    {
+        case TileModeBoard:
+            [self addTileToStage:tile];
+            break;
+        case TileModeStaged:
+            [self removeTileFromStage:tile];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)addTileToStage:(Tile*)tile
+{
+    tile.zOrder = 10;
+    tile.mode = TileModeStaged;
+    [self.stage addObject:tile];
+    [self updateStageOrder];
+}
+
+-(void)updateStageOrder
+{
+    for(int i=0; i<self.stage.count; i++)
+    {
+        Tile* tile = [self.stage objectAtIndex:i];
+        tile.order = i;
+    }
+}
+
+-(void)removeTileFromStage:(Tile*)tile
+{
+    tile.zOrder = 9;
+    if([self.stage containsObject:tile])
+    {
+        [self.stage removeObject:tile];
+        [self updateStageOrder];
+    }
+    tile.mode = TileModeBoard;
 }
 
 

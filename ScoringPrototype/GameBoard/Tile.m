@@ -80,12 +80,12 @@
     // move into position
     switch (self.mode) {
         case TileModeBoard:
-            destination = ccp(32 + self.col * 64, 80 + 32 + self.row * 64);
+            destination = ccp(32 + self.col * 64, 40 + 32 + self.row * 64);
             break;
         case TileModeDragging:
             break;
         case TileModeStaged:
-            
+            destination = ccp(32 + self.order*64, 440);
         default:
             break;
     }
@@ -99,6 +99,11 @@
     self.position = ccpAdd(self.position, velocity);
     
         
+}
+
+-(CGRect)rect
+{
+    return CGRectMake(position_.x-32, position_.y-32, 64, 64);
 }
 
 
