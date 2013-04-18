@@ -178,14 +178,14 @@
     if([[DictionaryLogic sharedDictionaryLogic] isWord:word] == NO)
     {
         // not a word - bail out
-        [[[[UIAlertView alloc] initWithTitle:@"Not a word" message:[NSString stringWithFormat:@"%@ is not in my dictionary",word] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+        [[[[UIAlertView alloc] initWithTitle:@"Not a word" message:[NSString stringWithFormat:@"%@ is not in my dictionary",[word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
        return;
     }
     
     if([[DictionaryLogic sharedDictionaryLogic] isWordPlayed:word] == YES)
     {
         // word has been played, bail out
-        [[[[UIAlertView alloc] initWithTitle:@"Played" message:[NSString stringWithFormat:@"%@ has been played",word] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+        [[[[UIAlertView alloc] initWithTitle:@"Played" message:[NSString stringWithFormat:@"%@, or a word starting with %@, has been played",[word lowercaseString], [word lowercaseString]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
         return;
     }
     
