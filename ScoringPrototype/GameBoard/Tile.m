@@ -14,6 +14,9 @@
 
 @property (nonatomic, retain) CCSprite* sprite;
 @property (nonatomic, retain) CCLabelTTF* label;
+@property (nonatomic, retain) CCLabelTTF* scoreLabel;
+
+@property (nonatomic) int stageCount;
 
 @end
 
@@ -38,6 +41,11 @@
         _label.color = ccBLACK;
         [self addChild:_label];
         
+        
+        _scoreLabel = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",[[DictionaryLogic sharedDictionaryLogic] pointsForLetter:_letter]] fontName:@"Marker Felt" fontSize:16] retain];
+        _scoreLabel.position = ccp(16, -16);
+        _scoreLabel.color = ccBLACK;
+        [self addChild:_scoreLabel];
     }
     return self;
 }
@@ -71,34 +79,47 @@
     }
 }
 
-
-
 -(void)update:(ccTime)delta
 {
     CGPoint destination;
+    float destScale = 1.0f;
     
     // move into position
     switch (self.mode) {
         case TileModeBoard:
-            destination = ccp(32 + self.col * 64, 40 + 32 + self.row * 64);
+            destination = ccp(32 + self.col * 64, 40 + 32 + self.row * 64);;
+
             break;
         case TileModeDragging:
             break;
         case TileModeStaged:
-            destination = ccp(32 + self.order*64, 440);
+            if(self.stageCount > 5)
+            {
+                destScale = 320.0f / (64.0f * self.stageCount);
+                
+            }
+            destination = ccp((self.scale * 32.0f) + self.order * (64*self.scale), 440);
         default:
             break;
     }
     
+    self.scale += (destScale - self.scale) / 5.0f;
 
-    CGPoint velocity = ccpMult(ccpSub(destination, self.position), 0.1);
+    CGPoint velocity = ccpMult(ccpSub(destination, self.position), 0.25);
     
-    if(ccpLengthSQ(velocity) > 10*10)
-        velocity = ccpMult(ccpNormalize(velocity), 10);
+#define MAXSPEED 18.0f
+    
+    if(ccpLengthSQ(velocity) > MAXSPEED * MAXSPEED)
+        velocity = ccpMult(ccpNormalize(velocity), MAXSPEED);
+    
     
     self.position = ccpAdd(self.position, velocity);
     
-        
+}
+
+-(void)setOwner:(int)owner
+{
+    
 }
 
 -(CGRect)rect

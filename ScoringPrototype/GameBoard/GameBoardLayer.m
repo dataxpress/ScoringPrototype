@@ -55,6 +55,9 @@
         }
         
         self.touchEnabled = YES;
+        CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(200, 200, 200, 255)];
+        [self addChild:colorLayer z:-1];
+
         
     }
     
@@ -69,7 +72,6 @@
     for(UITouch* touch in touches)
     {
         CGPoint location = [[CCDirector sharedDirector] convertToGL: [touch locationInView: [touch view]]];
-        NSLog(@"Location of touch is %@",NSStringFromCGPoint(location));
         for(Tile* tile in self.tiles)
         {
             if(CGRectContainsPoint(tile.rect, location))
@@ -111,6 +113,7 @@
     {
         Tile* tile = [self.stage objectAtIndex:i];
         tile.order = i;
+        [tile setStageCount:self.stage.count];
     }
 }
 

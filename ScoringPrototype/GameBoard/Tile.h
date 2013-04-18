@@ -35,6 +35,8 @@ typedef enum {
 
 @property (nonatomic, readonly) CGRect rect;
 
+-(void)setStageCount:(int)stageCount;
+
 -(int)points;
 
 @end
