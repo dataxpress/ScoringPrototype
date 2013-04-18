@@ -11,6 +11,7 @@
 @interface DictionaryLogic ()
 
 @property (nonatomic, retain) NSMutableSet* playedWords;
+@property (nonatomic, retain) NSArray* allWords;
 
 @end
 
@@ -35,6 +36,16 @@
         _playedWords = [[NSMutableSet alloc] init];
     }
     return self;
+}
+
+-(void)setupDictionary
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"master_dictionary" ofType:@"txt"];
+    NSString* dict = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    if (dict) {
+        // do something useful
+        self.allWords = [dict componentsSeparatedByString:@"\n"];
+    }
 }
 
 #pragma mark - score handling
@@ -82,7 +93,14 @@
 
 -(BOOL)isWord:(NSString *)word
 {
-    return YES;
+    // lazy load the dictionary
+    if(self.allWords == nil)
+    {
+        [self setupDictionary];
+    }
+    
+    return [self.allWords containsObject:[word lowercaseString]];
+    
 }
 
 -(BOOL)isWordPlayed:(NSString *)word
