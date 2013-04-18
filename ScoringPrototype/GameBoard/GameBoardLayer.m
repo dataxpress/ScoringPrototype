@@ -54,6 +54,8 @@
         _tiles = [[NSMutableSet alloc] init];
         _stage = [[NSMutableArray alloc] init];
         
+        _scoringMode = scoringMode;
+        
         // set up tiles
         for(int row=0; row<5; row++)
         {
