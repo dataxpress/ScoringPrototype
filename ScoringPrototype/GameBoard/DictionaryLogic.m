@@ -44,7 +44,7 @@
     NSString* dict = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     if (dict) {
         // do something useful
-        self.allWords = [dict componentsSeparatedByString:@"\n"];
+        self.allWords = [dict componentsSeparatedByString:@"\r\n"];
     }
 }
 
@@ -105,7 +105,15 @@
 
 -(BOOL)isWordPlayed:(NSString *)word
 {
-    return [self.playedWords containsObject:word];
+    // find out if any word has been played which contains this word
+    for(NSString* playedWord in self.playedWords)
+    {
+        if([playedWord hasPrefix:word])
+        {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 -(void)playWord:(NSString *)word
