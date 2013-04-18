@@ -120,5 +120,10 @@
 {
     [self.playedWords addObject:word];
 }
+-(void)reset
+
+{
+    self.playedWords = [[NSMutableSet alloc] init];
+}
 
 @end

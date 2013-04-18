@@ -7,6 +7,7 @@
 //
 
 #import "GameBoardLayer.h"
+#import "HelloWorldLayer.h"
 
 #import "Tile.h"
 
@@ -84,6 +85,16 @@
 		// Add the menu to the layer
 		[self addChild:menu];
         
+        
+		CCMenuItem *itemBack = [CCMenuItemFont itemWithString:@"Back" block:^(id sender) {
+			[self back];
+		} ];
+        
+		CCMenu *menu2 = [CCMenu menuWithItems:itemBack, nil];
+		menu2.position = ccp(50,550);
+		// Add the menu to the layer
+		[self addChild:menu2];
+        
         _turnLabel = [[CCLabelTTF labelWithString:@"Player 1's turn" fontName:@"Marker Felt" fontSize:24] retain];
         _turnLabel.position = ccp(160, 40);
         [self addChild:_turnLabel];
@@ -103,6 +114,13 @@
     return self;
 }
 
+-(void)back
+{
+    [[DictionaryLogic sharedDictionaryLogic] reset];
+    
+    [[CCDirector sharedDirector] replaceScene:[HelloWorldLayer scene]];
+
+}
 #pragma mark - touch handling
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

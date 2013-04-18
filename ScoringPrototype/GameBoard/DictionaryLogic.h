@@ -21,4 +21,6 @@
 -(BOOL)isWordPlayed:(NSString*)word;
 -(void)playWord:(NSString*)word;
 
+-(void)reset;
+
 @end
