@@ -184,6 +184,7 @@
     if([[DictionaryLogic sharedDictionaryLogic] isWordPlayed:word] == YES)
     {
         // word has been played, bail out
+        [[[[UIAlertView alloc] initWithTitle:@"Played" message:[NSString stringWithFormat:@"%@ has been played",word] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
         return;
     }
     
