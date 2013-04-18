@@ -428,6 +428,7 @@
 		4C04A4E2171FB44F00F87B12 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		4C04A4E3171FB44F00F87B12 /* tile-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile-hd.png"; sourceTree = "<group>"; };
 		4C04A4E7171FE7A600F87B12 /* master_dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = master_dictionary.txt; sourceTree = "<group>"; };
+		4C04A4E917206A3600F87B12 /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,6 +498,7 @@
 				4C04A340171FAA3800F87B12 /* Resources */,
 				4C04A358171FAA3800F87B12 /* libs */,
 				4C04A4C2171FAA3B00F87B12 /* Supporting Files */,
+				4C04A4E917206A3600F87B12 /* Enums.h */,
 			);
 			path = ScoringPrototype;
 			sourceTree = "<group>";
@@ -1189,6 +1191,7 @@
 				4C04A4D3171FAA3B00F87B12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

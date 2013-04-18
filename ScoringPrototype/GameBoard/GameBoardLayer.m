@@ -18,20 +18,24 @@
 @property (nonatomic, retain) CCLabelTTF* p1scoreLabel;
 @property (nonatomic, retain) CCLabelTTF* p2scoreLabel;
 
+
 @end
 
 @implementation GameBoardLayer
 
 #pragma mark - scene factory
 
-+(CCScene *) scene
++(CCScene *) sceneWithScoringMode:(ScoringMode)mode
 {
+    
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
 	GameBoardLayer *layer = [GameBoardLayer node];
 	
+    layer.scoringMode = mode;
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
@@ -257,20 +261,21 @@
     int player2score = 0;
     for(Tile* tile in self.tiles)
     {
+        int tilePoints = [tile pointsWithScoringMode:self.scoringMode];
         if(tile.mode == TileModeBoard)
         {
-            if(tile.owner == 0) player1score += tile.points;
-            if(tile.owner == 1) player2score += tile.points;
+            if(tile.owner == 0) player1score += tilePoints;
+            if(tile.owner == 1) player2score += tilePoints;
         }
         if(tile.mode == TileModeStaged)
         {
             if(self.playerTurn == 0)
             {
-                player1score += tile.points;
+                player1score += tilePoints;
             }
             else
             {
-                player2score += tile.points;
+                player2score += tilePoints;
             }
         }
     }

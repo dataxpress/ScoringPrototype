@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
+#import "Enums.h"
+
 typedef enum {
     TileStateNeutral,
     TileStateOwned,
@@ -37,6 +40,6 @@ typedef enum {
 
 -(void)setStageCount:(int)stageCount;
 
--(int)points;
+-(int)pointsWithScoringMode:(ScoringMode)scoringMode;
 
 @end

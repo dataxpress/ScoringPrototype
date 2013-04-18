@@ -56,9 +56,17 @@
     [self scheduleUpdate];
 }
 
--(int)points
+-(int)pointsWithScoringMode:(ScoringMode)mode
 {
-    return [[DictionaryLogic sharedDictionaryLogic] pointsForLetter:self.letter];
+    switch(mode)
+    {
+        case ScoringModeOnes:
+            return 1;
+        case ScoringModeScrabble:
+            return [[DictionaryLogic sharedDictionaryLogic] pointsForLetter:self.letter];
+        default:
+            return 0;
+    }
 }
 
 #pragma mark - debug values

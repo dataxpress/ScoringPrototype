@@ -51,17 +51,28 @@
 		// Default font size will be 28 points.
 		[CCMenuItemFont setFontSize:28];
 		
+        
+		// Achievement Menu Item using blocks
+		CCMenuItem *itemWordly = [CCMenuItemFont itemWithString:@"Wordly Scoring" block:^(id sender) {
+			
+            CCScene* gameBoardScene = [GameBoardLayer sceneWithScoringMode:ScoringModeOnes];
+            
+            [[CCDirector sharedDirector] replaceScene:gameBoardScene];
+            
+            
+		} ];
+        
 		// Achievement Menu Item using blocks
 		CCMenuItem *itemScrabble = [CCMenuItemFont itemWithString:@"Scrabble Scoring" block:^(id sender) {
 			
-            CCScene* gameBoardScene = [GameBoardLayer scene];
+            CCScene* gameBoardScene = [GameBoardLayer sceneWithScoringMode:ScoringModeScrabble];
             
             [[CCDirector sharedDirector] replaceScene:gameBoardScene];
             
             
 		} ];
 	
-		CCMenu *menu = [CCMenu menuWithItems:itemScrabble, nil];
+		CCMenu *menu = [CCMenu menuWithItems:itemWordly, itemScrabble, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
 		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];

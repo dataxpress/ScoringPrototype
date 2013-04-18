@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Enums.h"
 
 typedef enum
 {
@@ -17,14 +18,16 @@ typedef enum
     TileDirectionSouth
 } TileDirection;
 
+
 @interface GameBoardLayer : CCLayer {
     
 }
+@property (nonatomic) ScoringMode scoringMode;
 
 @property (nonatomic, retain) NSMutableSet* tiles;
 
 @property (nonatomic, retain) NSMutableArray* stage;
-+(CCScene*)scene;
++(CCScene*)sceneWithScoringMode:(ScoringMode)scoringMode;
 
 @property (nonatomic) int playerTurn;
 
