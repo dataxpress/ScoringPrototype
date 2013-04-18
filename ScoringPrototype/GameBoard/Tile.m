@@ -45,9 +45,9 @@
         int points = [self pointsWithScoringMode:scoringMode] ;
         if(points > 1){
             _scoreLabel = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",points] fontName:@"Marker Felt" fontSize:16] retain];
-                           _scoreLabel.position = ccp(16, -16);
-                           _scoreLabel.color = ccBLACK;
-                           [self addChild:_scoreLabel];
+           _scoreLabel.position = ccp(16, -16);
+           _scoreLabel.color = ccBLACK;
+           [self addChild:_scoreLabel];
        }
     }
     return self;
