@@ -137,6 +137,8 @@
 		4C04A4C8171FAA3B00F87B12 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4C7171FAA3B00F87B12 /* AppDelegate.m */; };
 		4C04A4CB171FAA3B00F87B12 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4CA171FAA3B00F87B12 /* HelloWorldLayer.m */; };
 		4C04A4CE171FAA3B00F87B12 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4CD171FAA3B00F87B12 /* IntroLayer.m */; };
+		4C04A4D7171FAB9800F87B12 /* GameBoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */; };
+		4C04A4DA171FAC0E00F87B12 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C04A4D9171FAC0E00F87B12 /* Tile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -413,6 +415,10 @@
 		4C04A4CA171FAA3B00F87B12 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		4C04A4CC171FAA3B00F87B12 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		4C04A4CD171FAA3B00F87B12 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		4C04A4D5171FAB9800F87B12 /* GameBoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameBoardLayer.h; path = GameBoard/GameBoardLayer.h; sourceTree = "<group>"; };
+		4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameBoardLayer.m; path = GameBoard/GameBoardLayer.m; sourceTree = "<group>"; };
+		4C04A4D8171FAC0D00F87B12 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = GameBoard/Tile.h; sourceTree = "<group>"; };
+		4C04A4D9171FAC0E00F87B12 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = GameBoard/Tile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +477,7 @@
 		4C04A33F171FAA3800F87B12 /* ScoringPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				4C04A4D4171FAB7C00F87B12 /* GameBoard */,
 				4C04A4C6171FAA3B00F87B12 /* AppDelegate.h */,
 				4C04A4C7171FAA3B00F87B12 /* AppDelegate.m */,
 				4C04A4C9171FAA3B00F87B12 /* HelloWorldLayer.h */,
@@ -858,6 +865,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4C04A4D4171FAB7C00F87B12 /* GameBoard */ = {
+			isa = PBXGroup;
+			children = (
+				4C04A4D5171FAB9800F87B12 /* GameBoardLayer.h */,
+				4C04A4D6171FAB9800F87B12 /* GameBoardLayer.m */,
+				4C04A4D8171FAC0D00F87B12 /* Tile.h */,
+				4C04A4D9171FAC0E00F87B12 /* Tile.m */,
+			);
+			name = GameBoard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1040,6 +1058,8 @@
 				4C04A4C8171FAA3B00F87B12 /* AppDelegate.m in Sources */,
 				4C04A4CB171FAA3B00F87B12 /* HelloWorldLayer.m in Sources */,
 				4C04A4CE171FAA3B00F87B12 /* IntroLayer.m in Sources */,
+				4C04A4D7171FAB9800F87B12 /* GameBoardLayer.m in Sources */,
+				4C04A4DA171FAC0E00F87B12 /* Tile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

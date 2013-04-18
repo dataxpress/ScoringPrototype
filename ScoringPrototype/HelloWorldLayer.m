@@ -10,6 +10,8 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 
+#import "GameBoardLayer.h"
+
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -52,8 +54,11 @@
 		// Achievement Menu Item using blocks
 		CCMenuItem *itemScrabble = [CCMenuItemFont itemWithString:@"Scrabble Scoring" block:^(id sender) {
 			
+            CCScene* gameBoardScene = [GameBoardLayer scene];
             
-			
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1.0 scene:gameBoardScene]];
+            
+            
 		} ];
 	
 		CCMenu *menu = [CCMenu menuWithItems:itemScrabble, nil];
