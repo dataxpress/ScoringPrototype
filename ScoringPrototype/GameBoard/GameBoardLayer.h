@@ -22,7 +22,6 @@ typedef enum
 @interface GameBoardLayer : CCLayer {
     
 }
-@property (nonatomic) ScoringMode scoringMode;
 
 @property (nonatomic, retain) NSMutableSet* tiles;
 

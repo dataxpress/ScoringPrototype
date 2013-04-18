@@ -23,7 +23,7 @@
 @implementation Tile
 
 
--(id)init
+-(id)initWithScoringMode:(ScoringMode)scoringMode
 {
     if(self = [super init])
     {
@@ -42,10 +42,13 @@
         [self addChild:_label];
         
         
-        _scoreLabel = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",[[DictionaryLogic sharedDictionaryLogic] pointsForLetter:_letter]] fontName:@"Marker Felt" fontSize:16] retain];
-        _scoreLabel.position = ccp(16, -16);
-        _scoreLabel.color = ccBLACK;
-        [self addChild:_scoreLabel];
+        int points = [self pointsWithScoringMode:scoringMode] ;
+        if(points > 1){
+            _scoreLabel = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",points] fontName:@"Marker Felt" fontSize:16] retain];
+                           _scoreLabel.position = ccp(16, -16);
+                           _scoreLabel.color = ccBLACK;
+                           [self addChild:_scoreLabel];
+       }
     }
     return self;
 }

@@ -42,4 +42,7 @@ typedef enum {
 
 -(int)pointsWithScoringMode:(ScoringMode)scoringMode;
 
+-(id)initWithScoringMode:(ScoringMode)scoringMode;
+
+
 @end

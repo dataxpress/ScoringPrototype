@@ -18,6 +18,7 @@
 @property (nonatomic, retain) CCLabelTTF* p1scoreLabel;
 @property (nonatomic, retain) CCLabelTTF* p2scoreLabel;
 
+@property (nonatomic) ScoringMode scoringMode;
 
 @end
 
@@ -32,20 +33,20 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	GameBoardLayer *layer = [GameBoardLayer node];
+	GameBoardLayer *layer = [[GameBoardLayer alloc] initWithScoringMode:mode];
 	
-    layer.scoringMode = mode;
     
 	// add layer as a child to scene
 	[scene addChild: layer];
-	
+	[layer release];
+    
 	// return the scene
 	return scene;
 }
 
 #pragma mark - init
 
--(id)init
+-(id)initWithScoringMode:(ScoringMode)scoringMode
 {
     if(self = [super init])
     {
@@ -57,11 +58,12 @@
         {
             for(int col=0; col<5; col++)
             {
-                Tile* tile = [Tile node];
+                Tile* tile = [[Tile alloc] initWithScoringMode:scoringMode];
                 tile.row = row;
                 tile.col = col;
                 [_tiles addObject:tile];
                 [self addChild:tile];
+                [tile release];
             }
             
         }
